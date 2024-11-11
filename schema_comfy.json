@@ -47,21 +47,21 @@
       "description": "Num Inference steps",
       "oneOf": [
         {
-          "description": "20",
+          "description": "4",
           "enum": [
-            20
+            4
           ]
         },
         {
-          "description": "30",
+          "description": "8",
           "enum": [
-            30
+            8
           ]
         },
         {
-          "description": "40",
+          "description": "16",
           "enum": [
-            40
+            16
           ]
         }
       ],
@@ -74,6 +74,29 @@
     "creative_restoration": {
       "type": "boolean",
       "description": "Creative Restoration"
+    },
+    "width": {
+      "type": "integer",
+      "description": "Width"
+    },
+    "height": {
+      "type": "integer",
+      "description": "Height"
+    },
+    "preview_start": {
+      "type": "number",
+      "description": "Preview Start",
+      "widget": "hidden"
+    },
+    "guidance_end": {
+      "type": "number",
+      "description": "Guidance End",
+      "widget": "hidden"
+    },
+    "batch_size": {
+      "type": "boolean",
+      "description": "Batch Size",
+      "widget": "hidden"
     },
     "example1": {
       "type": "string",

@@ -3,7 +3,12 @@
     "prompt": "Photorealistic, highly detailed, hyper detailed photo - realistic maximum detail, 32k, ultra HD, extreme meticulous detailing, skin pore detailing, hyper sharpness, perfect without deformations, taken using a Canon EOS R camera, Cinematic, High Contrast, Color Grading.",
     "negative_prompt": "blurry, out of focus, unclear, depth of field, over-smooth, sketch, oil painting, cartoon, CG Style, 3D render, unreal engine, dirty, messy, worst quality, low quality, frames, painting, illustration, drawing, art, watermark, signature, jpeg artifacts, deformed, lowres",
     "seed": 0,
-    "steps": 20,
-    "cfg": 7.0,
-    "creative_restoration": false
+    "steps": 8,
+    "cfg": 4.0,
+    "creative_restoration": false,
+    "width": 1024,
+    "height": 1024,
+    "preview_start": 0.0,
+    "guidance_end": 1.0,
+    "batch_size": 1
 }
