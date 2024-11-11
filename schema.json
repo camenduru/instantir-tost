@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema#",
+  "type": "object",
+  "properties": {
+    "readme": {
+      "type": "string",
+      "title": "InstantIR: Blind Image Restoration with Instant Generative Reference",
+      "author": "Jen-Yuan Huang, Haofan Wang, Qixun Wang, Xu Bai, Hao Ai, Peng Xing, Jen-Tse Huang",
+      "code": "https://github.com/instantX-research/InstantIR",
+      "paper": "https://arxiv.org/abs/2410.06551",
+      "page": "https://jy-joy.github.io/InstantIR/",
+      "jupyter": "https://github.com/camenduru/instantir-tost",
+      "api": "https://github.com/camenduru/tost-api-examples/blob/main/v1/instantir.ipynb",
+      "tags": [
+        "Image to Image"
+      ],
+      "widget": "readme"
+    },
+    "upload": {
+      "type": "string",
+      "widget": "upload",
+      "upload_url": "https://litterbox.catbox.moe/resources/internals/api.php",
+      "property": "input_image_check"
+    },
+    "input_image_check": {
+      "type": "string",
+      "description": "Input Image",
+      "widget": "textarea"
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Prompt",
+      "widget": "textarea"
+    },
+    "negative_prompt": {
+      "type": "string",
+      "description": "Prompt",
+      "widget": "textarea"
+    },
+    "seed": {
+      "type": "integer",
+      "description": "Seed (if 0 random)"
+    },
+    "steps": {
+      "type": "integer",
+      "widget": "select",
+      "description": "Num Inference steps",
+      "oneOf": [
+        {
+          "description": "4",
+          "enum": [
+            4
+          ]
+        },
+        {
+          "description": "8",
+          "enum": [
+            8
+          ]
+        },
+        {
+          "description": "16",
+          "enum": [
+            16
+          ]
+        }
+      ],
+      "default": 8
+    },
+    "cfg": {
+      "type": "number",
+      "description": "CFG"
+    },
+    "creative_restoration": {
+      "type": "boolean",
+      "description": "Creative Restoration"
+    },
+    "width": {
+      "type": "integer",
+      "description": "Width"
+    },
+    "height": {
+      "type": "integer",
+      "description": "Height"
+    },
+    "preview_start": {
+      "type": "number",
+      "description": "Preview Start",
+      "widget": "hidden"
+    },
+    "guidance_end": {
+      "type": "number",
+      "description": "Guidance End",
+      "widget": "hidden"
+    },
+    "batch_size": {
+      "type": "boolean",
+      "description": "Batch Size",
+      "widget": "hidden"
+    },
+    "example1": {
+      "type": "string",
+      "image1": "https://files.catbox.moe/zuus35.jpg",
+      "image2": "https://files.catbox.moe/rh3k3y.webp",
+      "image3": "https://fakeimg.pl/1024x1024/282828/eae0d0/?text=<in%20out>#.png",
+      "image4": "https://files.catbox.moe/p7wfiv.png",
+      "widget": "example"
+    }
+  },
+  "buttons": [
+    {
+      "id": "enter",
+      "label": "🥪 Enter"
+    }
+  ]
+}
