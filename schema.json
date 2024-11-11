@@ -82,6 +82,14 @@
       "image3": "https://fakeimg.pl/512x512/282828/eae0d0/?text=output#.png",
       "image4": "https://files.catbox.moe/d9hqaq.png",
       "widget": "example"
+    },
+    "example2": {
+      "type": "string",
+      "image1": "https://fakeimg.pl/512x512/282828/eae0d0/?text=input#.png",
+      "image2": "https://files.catbox.moe/knd9lc.png",
+      "image3": "https://fakeimg.pl/512x512/282828/eae0d0/?text=output#.png",
+      "image4": "https://files.catbox.moe/cv84is.png",
+      "widget": "example"
     }
   },
   "buttons": [
