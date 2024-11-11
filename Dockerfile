@@ -27,7 +27,7 @@ RUN pip install torch==2.5.0+cu124 torchvision==0.20.0+cu124 torchaudio==2.5.0+c
     pip install xformers==0.0.28.post2 https://github.com/camenduru/wheels/releases/download/torch-2.5.0-cu124/flash_attn-2.6.3-cp310-cp310-linux_x86_64.whl && \
     pip install opencv-python imageio imageio-ffmpeg ffmpeg-python av runpod && \
     pip install torchsde einops diffusers transformers accelerate peft timm && \
-    git clone -b dev https://github.com/camenduru/InstantIR-hf && \
+    GIT_LFS_SKIP_SMUDGE=1 git clone -b dev https://github.com/camenduru/InstantIR-hf && \
     aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/adapter.pt -d /content/InstantIR -o adapter.pt  && \
     aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/aggregator.pt -d /content/InstantIR -o aggregator.pt  && \
     aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/previewer_lora_weights.bin -d /content/InstantIR -o previewer_lora_weights.bin  && \
