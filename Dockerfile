@@ -27,18 +27,33 @@ RUN pip install torch==2.5.0+cu124 torchvision==0.20.0+cu124 torchaudio==2.5.0+c
     pip install xformers==0.0.28.post2 https://github.com/camenduru/wheels/releases/download/torch-2.5.0-cu124/flash_attn-2.6.3-cp310-cp310-linux_x86_64.whl && \
     pip install opencv-python imageio imageio-ffmpeg ffmpeg-python av runpod && \
     pip install torchsde einops diffusers transformers accelerate peft timm && \
-    git clone https://github.com/comfyanonymous/ComfyUI /content/ComfyUI && \
-    git clone https://github.com/ltdrdata/ComfyUI-Manager /content/ComfyUI/custom_nodes/ComfyUI-Manager && \
-    git clone https://github.com/smthemex/ComfyUI_InstantIR_Wrapper /content/ComfyUI/custom_nodes/ComfyUI_InstantIR_Wrapper && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/adapter.pt -d /content/ComfyUI/models/InstantIR/models -o adapter.pt  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/aggregator.pt -d /content/ComfyUI/models/InstantIR/models -o aggregator.pt  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/previewer_lora_weights.bin -d /content/ComfyUI/models/InstantIR/models -o previewer_lora_weights.bin  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/facebook/dinov2-large/raw/main/config.json -d /content/ComfyUI/models/dinov2 -o config.json  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/facebook/dinov2-large/resolve/main/model.safetensors -d /content/ComfyUI/models/dinov2 -o model.safetensors  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/facebook/dinov2-large/raw/main/preprocessor_config.json -d /content/ComfyUI/models/dinov2 -o preprocessor_config.json  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/main/pytorch_lora_weights.safetensors -d /content/ComfyUI/models/loras/sdxl/lcm -o pytorch_lora_weights.safetensors  && \
-    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/ultralytics/resolve/main/dreamshaperXL_lightningDPMSDE.safetensors -d /content/ComfyUI/models/checkpoints -o dreamshaperXL_lightningDPMSDE.safetensors
+    git clone -b dev https://github.com/camenduru/InstantIR-hf && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/adapter.pt -d /content/InstantIR -o adapter.pt  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/aggregator.pt -d /content/InstantIR -o aggregator.pt  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/InstantX/InstantIR/resolve/main/models/previewer_lora_weights.bin -d /content/InstantIR -o previewer_lora_weights.bin  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/facebook/dinov2-large/raw/main/config.json -d /content/dinov2 -o config.json  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/facebook/dinov2-large/resolve/main/model.safetensors -d /content/dinov2 -o model.safetensors  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/facebook/dinov2-large/raw/main/preprocessor_config.json -d /content/dinov2 -o preprocessor_config.json  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/main/pytorch_lora_weights.safetensors -d /content/lcm -o pytorch_lora_weights.safetensors  && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/scheduler/scheduler_config.json -d /content/sd_xl_base_1.0/scheduler -o scheduler_config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/text_encoder/config.json -d /content/sd_xl_base_1.0/text_encoder -o config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/resolve/main/sd_xl_base_1.0/text_encoder/model.safetensors -d /content/sd_xl_base_1.0/text_encoder -o model.safetensors && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/text_encoder_2/config.json -d /content/sd_xl_base_1.0/text_encoder_2 -o config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/resolve/main/sd_xl_base_1.0/text_encoder_2/model.safetensors -d /content/sd_xl_base_1.0/text_encoder_2 -o model.safetensors && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer/merges.txt -d /content/sd_xl_base_1.0/tokenizer -o merges.txt && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer/special_tokens_map.json -d /content/sd_xl_base_1.0/tokenizer -o special_tokens_map.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer/tokenizer_config.json -d /content/sd_xl_base_1.0/tokenizer -o tokenizer_config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer/vocab.json -d /content/sd_xl_base_1.0/tokenizer -o vocab.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer_2/merges.txt -d /content/sd_xl_base_1.0/tokenizer_2 -o merges.txt && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer_2/special_tokens_map.json -d /content/sd_xl_base_1.0/tokenizer_2 -o special_tokens_map.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer_2/tokenizer_config.json -d /content/sd_xl_base_1.0/tokenizer_2 -o tokenizer_config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/tokenizer_2/vocab.json -d /content/sd_xl_base_1.0/tokenizer_2 -o vocab.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/unet/config.json -d /content/sd_xl_base_1.0/unet -o config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/resolve/main/sd_xl_base_1.0/unet/diffusion_pytorch_model.safetensors -d /content/sd_xl_base_1.0/unet -o diffusion_pytorch_model.safetensors && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/vae/config.json -d /content/sd_xl_base_1.0/vae -o config.json && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/resolve/main/sd_xl_base_1.0/vae/diffusion_pytorch_model.safetensors -d /content/sd_xl_base_1.0/vae -o diffusion_pytorch_model.safetensors && \
+    aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/camenduru/InstantIR/raw/main/sd_xl_base_1.0/model_index.json -d /content/sd_xl_base_1.0 -o model_index.json
 
-COPY ./worker_runpod.py /content/ComfyUI/worker_runpod.py
-WORKDIR /content/ComfyUI
+COPY ./worker_runpod.py /content/InstantIR-hf/worker_runpod.py
+WORKDIR /content/InstantIR-hf
 CMD python worker_runpod.py
